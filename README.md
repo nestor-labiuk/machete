@@ -256,9 +256,9 @@ const ejemploArray = [25, 'Ford Mustang', true, [1, 0]];
 
 ## Métodos de **Array**
 
-- MAP
-- FILTER
-- REDUCE
+* MAP
+* FILTER
+* REDUCE
 
 ---
 
