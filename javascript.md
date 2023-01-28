@@ -9,6 +9,8 @@
 ### Declaracion de una funcion sin return
 
 ```javascript
+  javaScript
+
   function imprimeMensaje() {
         console.log('Hola soy una funcion!');
   }
@@ -21,6 +23,8 @@
 ### Declaracion de una funcion con return
 
 ```javascript
+  javaScript
+
   function calculaPromedioDeTresNumeros(num1, num2, num3){
         let promedio = (num1 + num2 +num3)/3;
     //  return 'El promedio es: ' + promedio + ' dolares';
@@ -34,6 +38,8 @@
 ---
 
 ```javascript
+  javaScript
+
   const calcula = calculaPromedioDeTresNumeros;
 
   console.log(calcula(45, 35, 62));
@@ -44,6 +50,8 @@
 ### Expresion de una funcion
 
 ```javascript
+  javaScript
+
   const calculaArea = function(ancho, alto) {
         const area = ancho * alto;
         return area;
@@ -57,6 +65,8 @@
 ### Funciones de tipo Flecha
 
    ```javascript
+  javaScript
+
   const calculaArea = (ancho, alto) =>{
         const area = ancho * alto;
         return area;
@@ -68,6 +78,8 @@
 ### Funciones flecha con un solo parametro y sola expresion
 
 ```javascript
+  javaScript
+
   const multiplicaNumero = x => x ** 3;
 
   console.log(multiplicaNumero(10));
@@ -78,13 +90,15 @@
 ### Funcion como Parametro
 
    ```javascript
-    const avisaUsuario = (fun, x) =>{
-           alert(fun(x));
-   }
+  javaScript
+
+  const avisaUsuario = (fun, x) =>{
+      alert(fun(x));
+  }
    
-    const saludaUsuario = (nombre = 'Amigo') => {
-            return `Hola ${nombre}`;
-   }
+  const saludaUsuario = (nombre = 'Amigo') => {
+      return `Hola ${nombre}`;
+  }
    
    avisaUsuario(saludaUsuario, 'Sergio');
  ```
@@ -111,11 +125,15 @@ Un Array un conjunto ordenado de elementos
 ### Declarar un *Array*
 
 ```javascript
- const  ejemploArrayVacio = [];
- ```
+  javaScript
+
+  const  ejemploArrayVacio = [];
+```
 
 ```javascript
- const ejemploArray = [25, 'Ford Mustang', true, [1, 0]];
+  javaScript
+
+  const ejemploArray = [25, 'Ford Mustang', true, [1, 0]];
 ```
 
 ---
@@ -123,6 +141,8 @@ Un Array un conjunto ordenado de elementos
 ### Cambiar Elementos de un *Arrays*
 
 ```javascript
+  javaScript
+
   ejemploArray[1] = 'Charger';
   console.log(ejemploArray);
 ```
@@ -132,6 +152,8 @@ Un Array un conjunto ordenado de elementos
 ### Acceder elementos de un *Array*
 
 ```javascript
+  javaScript
+
   let x = ejemploArray[3][0];
   console.log(x);
 ```
@@ -141,12 +163,16 @@ Un Array un conjunto ordenado de elementos
 ### Recorrer *Array*
 
 ```javascript
+  javaScript
+
   const carros = ['honda accord', 'ford mustang', 'toyota corolla', 'fiat 500'];
 ```
 
 * *Método #1 ( for )*
 
 ```javascript
+  javaScript
+
   for (let i = 0; i < carros.length; i++) {
     console.log(carros[i]);
   }
@@ -155,6 +181,8 @@ Un Array un conjunto ordenado de elementos
 * *Método #2 ( for of )*
 
 ```javascript
+  javaScript
+
   for (let carro of carros) {
      console.log(carro);
   }
@@ -163,6 +191,8 @@ Un Array un conjunto ordenado de elementos
 * *Método #3 ( forEach )*
 
 ```javascript
+  javaScript
+
   let cambiaLetra = (string) => {
      let letraModificada = string.toUpperCase();
      console.log (letraModificada);
@@ -170,10 +200,14 @@ Un Array un conjunto ordenado de elementos
 ```
 
  ```javascript
+  javaScript
+
   carros.forEach(cambiaLetra);
 ```
 
 ```javascript
+  javaScript
+
   carros.forEach ((carro) => {
      console.log(carro.toUpperCase());    
   });
@@ -198,6 +232,8 @@ Un Array un conjunto ordenado de elementos
 Saca el ultimo elemento
 
 ```javascript
+  javaScript
+
   console.log(carros.pop());
 ```
 
@@ -208,6 +244,8 @@ Saca el ultimo elemento
 Saca el primer elemento
 
 ```javascript
+  javaScript
+
   console.log(carros.shift());
 ```
 
@@ -216,6 +254,8 @@ Saca el primer elemento
 Agrega un elemento al final
 
 ```javascript
+  javaScript
+
   carros.push('ford explorer');
   
   console.log(carros);
@@ -228,6 +268,8 @@ Agrega un elemento al final
 Agrega un elemento al principio de la matriz
 
 ```javascript
+  javaScript
+
   carros.unshift('camaro');
   
   console.log(carros);
@@ -247,6 +289,8 @@ inserta element1,...AbortController,elementN.
 Si no le indico nada me borra todo splice()
 
 ```javascript
+  javaScript
+
   carros.splice(0, 0, 'ford focus');
   
   console.log(carros);
@@ -263,6 +307,8 @@ Pueden ser numeros negativos, en ese caso se asume la posicion desde el final
 Si no le indico nada me copia todo slice()
 
 ```javascript
+  javaScript
+
   const array
 ```
 
@@ -277,6 +323,8 @@ Trasforma un array en una lista de argumentos
 Observamos que el valor de la variable numeroMayor es NAN, esto es porque el método max() puede recibir una lista de argumentos y no le podemos pasar un array.
 
 ```javascript
+  javaScript
+
   let numeros = [4, 16, 25, 2, 45, 8];
 
   let numeroMayor = Math.max(numeros);
@@ -287,6 +335,8 @@ Observamos que el valor de la variable numeroMayor es NAN, esto es porque el mé
 Ahora sí podemos acceder al número más alto de la lista de argumentos. De todos modos podemos mejorar este código gracias al spread operator.
 
 ```javascript
+  javaScript
+
   let numeroMayor = Math.max(4, 16, 25, 2, 45, 8);
 
   console.log(numeroMayor); // 45 
@@ -295,6 +345,8 @@ Ahora sí podemos acceder al número más alto de la lista de argumentos. De tod
 Al anteponer los tres puntos que representan al spread operator transformamos la variable numeros (que en el ejemplo representa un array con números) en una lista de argumentos, y es por ello que podemos acceder al número mayor del array numeros.
 
 ```javascript
+  javaScript
+
   let numeros = [4, 16, 25, 2, 45, 8];
 
   let numeroMayor = Math.max(...numeros);
@@ -329,6 +381,8 @@ Paradigma funcional: Es una forma de programar, consiste aplicar funciones a nue
 El método arr.forEach permite ejecutar una función a cada elemento del array.
 
 ```javascript
+  javaScript
+
   arr.forEach(function(item, index, array) {
   // ... hacer algo con el elemento
 })
@@ -337,8 +391,10 @@ El método arr.forEach permite ejecutar una función a cada elemento del array.
 Por ejemplo, el siguiente código muestra cada elemento del array:
 
 ```javascript
-// para cada elemento ejecuta alert
+  javaScript
+
   ["Comisión", "26", "2022"].forEach(alert);
+  // para cada elemento ejecuta alert
 ```
 
 ---
@@ -350,11 +406,13 @@ arr.indexOf(item, from) busca un item comenzando desde el index from, y devuelve
 Usualmente este método se usa con un solo argumento: el item a buscar.
 
 ```javascript
-const arr = [1, 10, 100, 2, 200, false]
+  javaScript
 
-console.log(arr.indexOf(100)) // 2
-console.log(arr.indexOf(false)) // 5
-console.log(arr.indexOf('People')) // -1
+  const arr = [1, 10, 100, 2, 200, false]
+
+  console.log(arr.indexOf(100)) // 2
+  console.log(arr.indexOf(false)) // 5
+  console.log(arr.indexOf('People')) // -1
 ```
 
 ---
@@ -368,10 +426,12 @@ Usualmente este método se usa con un solo argumento: el item a buscar.
 Tener en cuenta que el método usa la comparación estricta (===).
 
 ```javascript
-const arr = [1, 10, 100, 2, 200, false]
+  javaScript
 
-console.log(arr.includes(1)) // true
-console.log(arr.includes('1')) // false
+  const arr = [1, 10, 100, 2, 200, false]
+
+  console.log(arr.includes(1)) // true
+  console.log(arr.includes('1')) // false
 ```
 
 Si queremos comprobar si un elemento existe en el array, pero no necesitamos saber su ubicación exacta, es preferible usar arr.includes.
@@ -388,6 +448,8 @@ Esa transformación de hace a traves de una función que programamos nosotros
 * ### **Ejemplo 1 :** obtener un nuevo array con el doble del valor de los numeros del array original
 
 ```javascript
+  javaScript
+
   const number = [2, 3, 6, 8, 10, 12, 14]
   const double = number.map(function(value, index, array){
     return value * 2
@@ -397,6 +459,8 @@ Esa transformación de hace a traves de una función que programamos nosotros
 Para este ejemplo solo necesitamos el primer parámetro, por lo tanto no es necesario que escribamos los otros
 
 ```javascript
+  javaScript
+
   const double = number.map(function(value){
     return value * 2
   })
@@ -405,12 +469,16 @@ Para este ejemplo solo necesitamos el primer parámetro, por lo tanto no es nece
 Es importante el orden de los parametros . Si necesitaramos el segundo parametro y no el primero debemos colocar un guión bajo en su lugar
 
 ```javascript
+  javaScript
+
   number.map(_,index)
 ```
 
 Para simplificar aún mas la escritura podemos usar la función fecha y si escribimos en una sola linea de no necesitamos las llaves ni la expresión return
 
 ```javascript
+  javaScript
+
   const double = number.map(value => value * 2) 
 ```
 
@@ -421,6 +489,8 @@ También podemos usar if o for dentro de los metodos de las funciones
 * ### **Ejemplo 2 :** Obtener un nuevo array con los pruductos que tengan un valor mayor a  3000 y aplicarles un descuento de 10%
 
  ```javascript
+  javaScript
+
   const products = [
     {id: '00101',name: 'camisa',price: '4000'}
     {id: '00102',name: 'remera',price: '2500'}
@@ -429,17 +499,21 @@ También podemos usar if o for dentro de los metodos de las funciones
   ```
   
 ```javascript
- const discountedProducts = products.map(product => {
+  javaScript
+
+  const discountedProducts = products.map(product => {
     if (product.price < 3000) return product
     product.price = product.price * 0.9
   })
- ```
+```
 
  Esta solución tiene 2 problemas la estamos modificando el array original ***products*** y estamos retornando un array con valores undefine ***dicoutedProducts***
 
 La Soklución correcta seria
 
 ```javascript
+  javaScript
+
   const discountProducts = products.map(product => {
     if (product < 3000) return product
 
@@ -456,12 +530,16 @@ La Soklución correcta seria
 Digamos que queremos obteer los id de un objeto
 
 ```javascript
+  javaScript
+
   const idProducts = products.map(value => value.id)
 ```
 
 Hay otra solución que se usa mucho que es desarmando el parámetro recibido
 
  ```javascript
+  javaScript
+
   const idProducts = products.map(({id}) => id)
  ```
 
@@ -479,12 +557,16 @@ Esta función recibe el nombre de predicado
 * ### **Ejemplo 1 :** filtrar por precios
 
 ```javascript
+  javaScript
+
   const cheapProducts = products.filter(product => products.price < 4500)
 ```
 
 Podemos escribir la función en una variable separada
 
 ```javascript
+  javaScript
+
   const isCheap = product => product.price < 4500
 
   const cheapProducts = products.filter(isCheap)
@@ -493,6 +575,8 @@ Podemos escribir la función en una variable separada
 Si ahora queremos filtrar los productos caros podemos utilizar la función ***isCheap***
 
 ```javascript
+  javaScript
+
   const isEpensive = product => !isCheap(pruduct)
 
   const expensiveProducts = products.filter(isExpensive)  
@@ -503,6 +587,8 @@ Si ahora queremos filtrar los productos caros podemos utilizar la función ***is
 * ### **Ejemplo 2 :** Eliminar los números repetidos de un array utilizando ***indexOf()***
 
 ```javascript
+  javaScript
+
   const numbers = [1, 2, 3, 4, 5, 6, 7, 4, 5, 6] 
 
   const uniqueNumbers = numbers.filter(number, index, numbers) => {
@@ -517,7 +603,9 @@ Si ahora queremos filtrar los productos caros podemos utilizar la función ***is
 El método find busca un único elemento (el primero) que haga a la función devolver true.
 
 ```javascript
-const result = arr.find((item, index, array) => {
+  javaScript
+
+  const result = arr.find((item, index, array) => {
   // si true es devuelto aquí, find devuelve el ítem y la iteración se detiene
   // para el caso en que sea false, devuelve undefined
 })
@@ -526,10 +614,12 @@ const result = arr.find((item, index, array) => {
 Ejemplos:
 
 ```javascript
-const arr = ['🍎','🍉','🍋']
-const apple = arr.find(item => item === '🍎')
+  javaScript
 
-console.log(apple) // '🍎'
+  const arr = ['🍎','🍉','🍋']
+  const apple = arr.find(item => item === '🍎')
+
+  console.log(apple) // '🍎'
 ```
 
 ## **reduce()**
@@ -541,13 +631,17 @@ Suma todos los valores de un array
 * ### **Ejemplo 1 :** obtenerla suma de un array de números
 
 ```javascript
+  javaScript
+
   const numbers = [10, 20, 30, 40, 50]
 ```
 
 ```javascript
+  javaScript
+
   const addition = numbers.reduce((previusValue, currentValue) => { 
     return previusValue + currentValue 
-    }, 0) 
+  }, 0) 
 ```
 
 El 0 al final es un parámetro que no es obligatorio pero si tratamos de sumar un array vacio sin este parametro nos dara un error por consola
@@ -555,6 +649,8 @@ El 0 al final es un parámetro que no es obligatorio pero si tratamos de sumar u
 También podemos escribir el predicado en una función aparte
 
 ```javascript
+  javaScript
+
   const accumulate = (previus, current) => previus + current
 
   const addition = numbers.reduce(accumulate, 0)
@@ -563,12 +659,16 @@ También podemos escribir el predicado en una función aparte
 Si no ponemos el paramtro 0 nos deveriamos asegurar que el array no este vacio
 
 ```javascript
+  javaScript
+
   const accumulate = (previus, current) => previus + current
   
   const addition = numbers.length > 0 ? numbers.reduce(accumulate) : 0
 ```
 
 ```javascript
+  javaScript
+
   const
 ```
 
@@ -590,6 +690,8 @@ Si no ponemos el paramtro 0 nos deveriamos asegurar que el array no este vacio
 ### 1. Crear un objeto
 
 ```javascript
+  javaScript
+
   let carro = new Object();
   const user = {} 
 
@@ -600,6 +702,8 @@ Si no ponemos el paramtro 0 nos deveriamos asegurar que el array no este vacio
 ### 2. Crear un objeto (Constructor)
 
 ```javascript
+  javaScript
+
   let carro = new Object();
   const user = {} 
 
@@ -610,6 +714,8 @@ Si no ponemos el paramtro 0 nos deveriamos asegurar que el array no este vacio
 ### 3. Evita crear objetos de tipo String, Boolean, Number
 
 ```javascript
+  javaScript
+
   let frase = new String('Objetos');
   console.log(typeof(frase));
   frase2 = 'Objetos';
@@ -619,7 +725,9 @@ Si no ponemos el paramtro 0 nos deveriamos asegurar que el array no este vacio
 ### 4. Crear un objeto con Object Literal(valores declarados literalmente en el codigo)
 
 ```javascript
-const car = {
+  javaScript
+
+  const car = {
     nombre: 'Ford',
     modelo: 'Mondeo',
     color: 'blanco',
@@ -649,7 +757,7 @@ const car = {
        let year = new Date().getFullYear();
        return  year - this.produccion;
     }
-};
+  };
 ```
 
 ---
@@ -682,17 +790,21 @@ Podemos crear objetos utilizando llaves `{...}` con una lista opcional de propie
 Se puede crear un objeto vacío utilizando una de estas dos sintaxis:
 
 ```javascript
-const user = new Object() // sintaxis de "constructor de objetos"
-const user = {}  // sintaxis de "objeto literal"
+  javaScript
+
+  const user = new Object() // sintaxis de "constructor de objetos"
+  const user = {}  // sintaxis de "objeto literal"
 ```
 
 También podemos poner inmediatamente algunas propiedades dentro de {...} como pares “clave:valor”:
 
 ```javascript
-const user = {     // un objeto
-  name: "Maciel", // En la clave "name" se almacena el valor "Maciel"
-  age: 22        // En la clave "age" se almacena el valor 22
-}
+  javaScript
+
+  const user = {     // un objeto
+    name: "Maciel", // En la clave "name" se almacena el valor "Maciel"
+    age: 22        // En la clave "age" se almacena el valor 22
+  }
 ```
 
 Una propiedad tiene una clave (también conocida como “nombre” o “identificador”) antes de los dos puntos `":"` y un valor a la derecha.
@@ -707,8 +819,10 @@ Podemos agregar, eliminar y leer archivos de él en cualquier momento.
 Se puede acceder a los valores de las propiedades utilizando la notación de punto:
 
 ```javascript
-console.log( user.name )
-console.log( user.age )
+  javaScript
+  
+  console.log( user.name )
+  console.log( user.age )
 ```
 
 ### El bucle "for..in"
@@ -716,18 +830,20 @@ console.log( user.age )
 Para recorrer todas las claves de un objeto existe una forma especial de bucle: `for..in`.
 
 ```javascript
-const user = {
-  name: "Maciel",
-  age: 22,
-  isAdmin: true
-}
+  javaScript
+  
+  const user = {
+    name: "Maciel",
+    age: 22,
+    isAdmin: true
+  }
 
-for (const key in user) {
-  // claves
-  console.log( key )  // name, age, isAdmin
-  // valores de las claves
-  console.log( user[key] ) // Maciel, 22, true
-}
+  for (const key in user) {
+    // claves
+    console.log( key )  // name, age, isAdmin
+    // valores de las claves
+    console.log( user[key] ) // Maciel, 22, true
+  }
 ```
 
 ---
@@ -737,8 +853,10 @@ for (const key in user) {
 Una de las diferencias fundamentales entre objetos y primitivos es que los **objetos** son almacenados y copiados “por referencia”, en cambio los **primitivos**: `strings`, `number`, `boolean`, etc. son asignados y copiados “como un valor completo”.
 
 ```javascript
-const message = "Hello!"
-const phrase = message
+  javaScript
+  
+  const message = "Hello!"
+  const phrase = message
 ```
 
 ![Copia de una variable](./assets/variable-copy-value.svg)
@@ -752,9 +870,11 @@ Bueno, en el caso de los objetos **Las cosas no son así**.
 Veamos un ejemplo de tal variable:
 
 ```javascript
-const user = {
-  name: 'Maciel'
-}
+  javaScript
+  
+  const user = {
+    name: 'Maciel'
+  }
 ```
 
 ![Variable almacenada en un objeto](./assets/variable-contains-reference.svg)
@@ -766,8 +886,10 @@ El objeto es almacenado en algún lugar de la memoria (a la derecha de la imagen
 **¡EL OBJETO NO ES DUPLICADO!**
 
 ```javascript
-const user = { name: 'Maciel' }
-const admin = user // Copia la referencia
+  javaScript
+  
+  const user = { name: 'Maciel' }
+  const admin = user // Copia la referencia
 ```
 
 ![Copia de una objeto](./assets/variable-copy-reference.svg)
@@ -779,11 +901,13 @@ Como podemos ver, aún hay **un** objeto, ahora con dos variables haciendo refer
 Podemos usar cualquiera de las variables para acceder al objeto y modificar su contenido:
 
 ```javascript
-const user = { name: 'Maciel' }
-const admin = user // Copiamos la referencia
+  javaScript
+  
+  const user = { name: 'Maciel' }
+  const admin = user // Copiamos la referencia
 
-admin.name = 'Pamela' // cambiado por la referencia "admin"
-console.log(user.name) // 'Pamela', los cambios se ven desde la referencia 'user'
+  admin.name = 'Pamela' // cambiado por la referencia "admin"
+  console.log(user.name) // 'Pamela', los cambios se ven desde la referencia 'user'
 ```
 
 ---
@@ -793,32 +917,38 @@ console.log(user.name) // 'Pamela', los cambios se ven desde la referencia 'user
 Dos objetos son iguales solamente si ellos son el mismo objeto. Es decir, si ambas variables tienen referencia al mismo objeto.
 
 ```javascript
-const a = {}
-const b = a
+  javaScript
+  
+  const a = {}
+  const b = a
 
-console.log(a == b) // true, Ambas variables hacen referencia al mismo objeto
-console.log(a === b) // true
+  console.log(a == b) // true, Ambas variables hacen referencia al mismo objeto
+  console.log(a === b) // true
 ```
 
 Aquí dos objetos independientes no son iguales.
 
 ```javascript
-const a = {}
-const b = {}
+  javaScript
+  
+  const a = {}
+  const b = {}
 
-console.log(a === b) // false, no hacen referencia al mismo objeto.
+  console.log(a === b) // false, no hacen referencia al mismo objeto.
 ```
 
 **Aclaración importante:** Puede parecer que si hacemos lo siguiente:
 
 ```javascript
-const user = {
+  javaScript
+  
+  const user = {
   name: 'Maciel'
-}
+  }
 
-user.name = 'Leandro'
+  user.name = 'Leandro'
 
-console.log(user.name) // Leandro
+  console.log(user.name) // Leandro
 ```
 
 causaría algún error, pero esto no es así. El valor de `user` es constante, este valor debe **siempre hacer referencia al mismo objeto**, pero las propiedades de dicho objeto **si pueden cambiar**.
@@ -836,15 +966,17 @@ Y en el mundo real, un usario puede *actuar*: seleccionar algo del carrito de co
 Las acciones son representadas por funciones en las propiedades.
 
 ```javascript
-const user = {
-  name: 'Maciel',
-  age: 30
-  sayHi: function() {
-    console.log('¡Hola!');
+  javaScript
+  
+  const user = {
+    name: 'Maciel',
+    age: 30
+    sayHi: function() {
+      console.log('¡Hola!');
+    }
   }
-}
 
-user.sayHi() // ¡Hola!
+  user.sayHi() // ¡Hola!
 ```
 
 Una función que es la propiedad de un objeto es denominada su *método*
@@ -852,11 +984,13 @@ Una función que es la propiedad de un objeto es denominada su *método*
 Existe una sintaxis más corta para los metodos en objetos literales:
 
 ```javascript
-const user = {
-  sayHi() {
-    console.log('¡Hola!')
+  javaScript
+  
+  const user = {
+    sayHi() {
+      console.log('¡Hola!')
+    }
   }
-}
 ```
 
 ---
@@ -869,36 +1003,40 @@ Cada clase es un modelo que define un conjunto de variables, y métodos apropiad
 La sintaxis básica es:
 
 ```javascript
-class MyClass {
-  // métodos de clase
-  constructor() {
-    ... 
+  javaScript
+  
+  class MyClass {
+    // métodos de clase
+    constructor() {
+      ... 
+    }
+    method1() {
+      ... 
+    }
+    method2() {
+      ... 
+    }
+    ...
   }
-  method1() {
-    ... 
-  }
-  method2() {
-    ... 
-  }
-  ...
-}
 ```
 
 El método `constructor()` es donde inicializamos nuestro objeto, por ejemplo:
 
 ```javascript
-class User {
-  constructor(name){
-    this.name = name;
+  javaScript
+
+  class User {
+    constructor(name){
+      this.name = name;
+    }
+
+    sayHi() {
+      console.log(this.name);
+    }
   }
 
-  sayHi() {
-    console.log(this.name);
-  }
-}
-
-const user = new User('Leandro')
-user.sayHi()
+  const user = new User('Leandro')
+  user.sayHi()
 ```
 
 Cuando se llama a `new User('Leandro')`:
@@ -917,7 +1055,7 @@ Entonces podemos llamar a sus métodos, como `user.sayHi()`
 ---
 ---
 
-## **DOM**
+## **DOM :** Document Object Model
 
 El DOM da una representación del documento como un grupo de nodos y objetos estructurados que tienen propiedades y métodos. Esencialmente, conecta las páginas web a scripts o lenguajes de programación.
 
@@ -934,9 +1072,15 @@ El DOM da una representación del documento como un grupo de nodos y objetos est
 
 ## Acceder al **DOM**
 
-```javascript
+```html
+  HTML
+
   <p class="parrafo" id="mi-id">Hola este es mi párrafo </p>
   <p class="parrafo" id="mi-id-dos">Hola este es mi párrafo </p>
+```
+
+```javascript
+  javaScript
 
   document.querySelector(".parrafo").textContent = "Párrafo dinámico";
   console.log(document.head);
@@ -962,22 +1106,24 @@ Una vez que tenemos el elemento podemos modificarlo.
 ```
 
 ```javascript
+  javaScript
+  
   const parrafo = document.querySelector(".parrafo");
-  parrafo.textContent = "Parrafo dinámico";
-
+    parrafo.textContent = "Parrafo dinámico";
 ```
 
 ```javascript
-// Agregamos texto + etiquetas html
-parrafo.innerHTML = "<b>Texto destacado</b> dentro de párrafo";
+  javaScript
+  
+  // Agregamos texto + etiquetas html
+  parrafo.innerHTML = "<b>Texto destacado</b> dentro de párrafo";
 
-// Nos devuelve la clase del párrafo
-console.log(parrafo.className);
+  // Nos devuelve la clase del párrafo
+  console.log(parrafo.className);
 
-// Agregamos una clase adicional
-parrafo.classList.add("clase-adicional");
-console.log(parrafo);
-
+  // Agregamos una clase adicional
+  parrafo.classList.add("clase-adicional");
+  console.log(parrafo);
 ```
 
 ---
@@ -993,7 +1139,8 @@ En un documento HTML, el método document.createElement() crea un elemento HTML 
 ```
 
 ```javascript
-
+  javaScript
+  
   // elemento donde vamos a incorporar los <li>
   const lista = document.getElementById("lista-dinamica");
 
@@ -1012,6 +1159,8 @@ En un documento HTML, el método document.createElement() crea un elemento HTML 
 Varios elementos (no recomendado):
 
 ```javascript
+  javaScript
+  
   const lista = document.getElementById("lista-dinamica");
 
   const arrayItem = ["item 1", "item 2", "item 3"];
@@ -1028,6 +1177,8 @@ Varios elementos (no recomendado):
 **Template string :** Otra opción tentadora (no recomendado)
 
 ```javascript
+  javaScript
+  
   const lista = document.getElementById("lista-dinamica");
 
   const arrayItem = ["item 1", "item 2", "item 3"];
@@ -1042,6 +1193,8 @@ Varios elementos (no recomendado):
 Un ejemplo un poco mas real
 
 ```javascript
+  javaScript
+  
   const lista = document.getElementById("lista-dinamica");
   const arrayItem = ["item 1", "item 2", "item 3"];
 
@@ -1074,6 +1227,8 @@ Por ende en un fragment vamos a guardar todo un template o nodos HTML que luego 
 ```
 
 ```javascript
+  javaScript
+  
   const lista = document.getElementById("lista-dinamica");
 
   const arrayItem = ["item 1", "item 2", "item 3"];
@@ -1100,6 +1255,8 @@ Por ende en un fragment vamos a guardar todo un template o nodos HTML que luego 
 ```
 
 ```javascript
+  javaScript
+  
   const lista = document.getElementById("lista-dinamica");
   const arrayItem = ["item 1", "item 2", "item 3"];
   const fragment = document.createDocumentFragment();
@@ -1148,6 +1305,8 @@ Hay quienes prefieren colocarlos al final.
 En mi opinión es mejor colocarlo dentro de la etiqueta donde se va a renderizar.
 
 ```javascript
+  javaScript
+  
   const lista = document.getElementById("lista-dinamica");
   const arrayItem = ["item 1", "item 2", "item 3"];
 
@@ -1174,17 +1333,20 @@ En mi opinión es mejor colocarlo dentro de la etiqueta donde se va a renderizar
 ## **onClick**
 
 ---
+
 ## **addEventListener**
 
 ```html
-<!DOCTYPE html>
+  HTML
+
+  <!DOCTYPE html>
  
- <html lang="es">
+  <html lang="es">
     <head>
       <meta charset="UTF-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <title>Document</title>
-      <link
+     <link
         rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
         integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
@@ -1208,6 +1370,8 @@ En mi opinión es mejor colocarlo dentro de la etiqueta donde se va a renderizar
 ```
 
 ```javascript
+  javaScript
+  
   const resultado = document.getElementById("resultado");
   const btnAgregar = document.querySelector(".btn-info");
   let contador = 0;
@@ -1228,6 +1392,8 @@ En mi opinión es mejor colocarlo dentro de la etiqueta donde se va a renderizar
 ## **Event Delegation** y **stopPropagation** (Ejemplo)
 
 ```javascript
+  javaScript
+  
   const resultado = document.getElementById("resultado");
   const container = document.querySelector(".container");
   let contador = 0;
