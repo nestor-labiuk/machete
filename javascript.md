@@ -385,7 +385,7 @@ Esa transformación de hace a traves de una función que programamos nosotros
 
 ---
 
-### **Ejemplo 1 :** obtener un nuevo array con el doble del valor de los numeros del array original
+* ### **Ejemplo 1 :** obtener un nuevo array con el doble del valor de los numeros del array original
 
 ```javascript
   const number = [2, 3, 6, 8, 10, 12, 14]
@@ -418,7 +418,7 @@ También podemos usar if o for dentro de los metodos de las funciones
 
 ---
 
-### **Ejemplo 2 :** Obtener un nuevo array con los pruductos que tengan un valor mayor a  3000 y aplicarles un descuento de 10%
+* ### **Ejemplo 2 :** Obtener un nuevo array con los pruductos que tengan un valor mayor a  3000 y aplicarles un descuento de 10%
 
  ```javascript
   const products = [
@@ -451,7 +451,7 @@ La Soklución correcta seria
 
 ---
 
-### **Ejemplo 3 :** map nos sirve tambien para extraer datos de un objeto
+* ### **Ejemplo 3 :** map nos sirve tambien para extraer datos de un objeto
 
 Digamos que queremos obteer los id de un objeto
 
@@ -476,7 +476,7 @@ Esta función recibe el nombre de predicado
 
 ---
 
-### **Ejemplo 1 :** filtrar por precios
+* ### **Ejemplo 1 :** filtrar por precios
 
 ```javascript
   const cheapProducts = products.filter(product => products.price < 4500)
@@ -500,7 +500,7 @@ Si ahora queremos filtrar los productos caros podemos utilizar la función ***is
 
 ---
 
-### **Ejemplo 2 :** Eliminar los números repetidos de un array utilizando ***indexOf()***
+* ### **Ejemplo 2 :** Eliminar los números repetidos de un array utilizando ***indexOf()***
 
 ```javascript
   const numbers = [1, 2, 3, 4, 5, 6, 7, 4, 5, 6] 
@@ -538,7 +538,7 @@ Suma todos los valores de un array
 
 ---
 
-### **Ejemplo 1 :** obtenerla suma de un array de números
+* ### **Ejemplo 1 :** obtenerla suma de un array de números
 
 ```javascript
   const numbers = [10, 20, 30, 40, 50]
@@ -913,3 +913,347 @@ Entonces podemos llamar a sus métodos, como `user.sayHi()`
 > Un tropiezo común en desarrolladores principiantes es poner una coma entre los métodos de clase, lo que resulta en un error de sintaxis.
 >
 > La notación aquí no debe ser confundida con la sintaxis de objeto literal. **Dentro de la clase no se requieren comas.**
+
+---
+---
+
+## **DOM**
+
+El DOM da una representación del documento como un grupo de nodos y objetos estructurados que tienen propiedades y métodos. Esencialmente, conecta las páginas web a scripts o lenguajes de programación.
+
+---
+
+## **Document**
+
+* Cuando un documento HTML se carga en un navegador web, se convierte en un objeto de documento.
+* El objeto de documento es el nodo raíz del documento HTML.
+* La interfaz Document representa cualquer página web cargada en el navegador y sirve como punto de entrada al contenido de la página (El árbol DOM).
+* El DOM incluye elementos como < body > y < table > , entre muchos otros, y proporciona funcionalidad que es global al documento, como obtener la URL de la página y crear nuevos elementos en el documento.
+
+---
+
+## Acceder al **DOM**
+
+```javascript
+  <p class="parrafo" id="mi-id">Hola este es mi párrafo </p>
+  <p class="parrafo" id="mi-id-dos">Hola este es mi párrafo </p>
+
+  document.querySelector(".parrafo").textContent = "Párrafo dinámico";
+  console.log(document.head);
+  console.log(document.body);
+  console.log(document.getElementById("mi-id"));
+  console.log(document.querySelector("#mi-id"));
+  console.log(document.querySelector(".mi-id"));
+  console.log(document.querySelector("p"));
+  console.log(document.querySelectorAll("p"));
+
+```
+
+---
+
+## Element
+
+Una vez que tenemos el elemento podemos modificarlo.
+
+```html
+  HTML
+
+  <p class="parrafo" id="mi-id">Hola este es mi párrafo</p>
+```
+
+```javascript
+  const parrafo = document.querySelector(".parrafo");
+  parrafo.textContent = "Parrafo dinámico";
+
+```
+
+```javascript
+// Agregamos texto + etiquetas html
+parrafo.innerHTML = "<b>Texto destacado</b> dentro de párrafo";
+
+// Nos devuelve la clase del párrafo
+console.log(parrafo.className);
+
+// Agregamos una clase adicional
+parrafo.classList.add("clase-adicional");
+console.log(parrafo);
+
+```
+
+---
+
+## createElement()
+
+En un documento HTML, el método document.createElement() crea un elemento HTML especificado por su tagName.
+
+```html
+  HTML
+
+  <ul id="lista-dinamica"></ul>
+```
+
+```javascript
+
+  // elemento donde vamos a incorporar los <li>
+  const lista = document.getElementById("lista-dinamica");
+
+  // Creamos el <li>
+  const li = document.createElement("li");
+
+  // Agregamos texto al <li>
+  li.textContent = "Mi <li> dinámico";
+
+  // Finalmente incorporamos al <ul>
+  lista.appendChild(li);
+```
+
+---
+
+Varios elementos (no recomendado):
+
+```javascript
+  const lista = document.getElementById("lista-dinamica");
+
+  const arrayItem = ["item 1", "item 2", "item 3"];
+
+  arrayItem.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    lista.appendChild(li);
+  });
+```
+
+---
+
+**Template string :** Otra opción tentadora (no recomendado)
+
+```javascript
+  const lista = document.getElementById("lista-dinamica");
+
+  const arrayItem = ["item 1", "item 2", "item 3"];
+
+  arrayItem.forEach((item) => {
+  lista.innerHTML += `
+            <li>${item}</li>
+          `;
+  });
+```
+
+Un ejemplo un poco mas real
+
+```javascript
+  const lista = document.getElementById("lista-dinamica");
+  const arrayItem = ["item 1", "item 2", "item 3"];
+
+  let template = "";
+  arrayItem.forEach((item) => {
+  template += `
+    <li class="list">
+        <b>nombre: </b> <span class="text-danger">${item}</span>
+    </li>
+    `;
+  });
+
+  lista.innerHTML = template;
+```
+
+Aquí se genera **Reflow**: Ocurre cuando un navegador debe procesar y dibujar parte o la totalidad de una página web nuevamente, como después de una actualización en un sitio interactivo.
+
+---
+
+## **Fragment**
+
+Se utiliza como una versión ligera de Document que almacena un segmento de una estructura de documento compuesta de nodos como un documento estándar.
+
+Por ende en un fragment vamos a guardar todo un template o nodos HTML que luego pintaremos en nuestro DOM, así evitamos en mayor parte el Reflow.
+
+```html
+  HTML
+
+  <ul id="lista-dinamica"></ul>
+```
+
+```javascript
+  const lista = document.getElementById("lista-dinamica");
+
+  const arrayItem = ["item 1", "item 2", "item 3"];
+
+  const fragment = document.createDocumentFragment();
+
+  arrayItem.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+    fragment.appendChild(li);
+  });
+
+  lista.appendChild(fragment);
+```
+
+---
+
+## insetar la lista en sentido inverso
+
+```html
+  HTML
+
+  <ul id="lista-dinamica"></ul>
+```
+
+```javascript
+  const lista = document.getElementById("lista-dinamica");
+  const arrayItem = ["item 1", "item 2", "item 3"];
+  const fragment = document.createDocumentFragment();
+
+  arrayItem.forEach((item) => {
+    const li = document.createElement("li");
+    li.textContent = item;
+
+    // Nos devuelve el primer elemento
+    const referenceNode = fragment.firstChild;
+    // En caso de que no exista un nodo hijo tirará null
+    console.log("primer li", referenceNode);
+
+    // Si "referenceNode" es null, el newNode se insertará al final de la lista de nodos hijos.
+    // parentNode.insertBefore(newNode, referenceNode);
+    fragment.insertBefore(li, referenceNode);
+  });
+
+  lista.appendChild(fragment);
+```
+
+---
+
+## **< template >**
+
+El elemento HTML < template > es un mecanismo para mantener el contenido HTML del lado del cliente que no se renderiza cuando se carga una página, pero que posteriormente puede ser instanciado durante el tiempo de ejecución empleando JavaScript.
+
+La mejor solución es utilizar **< template >** y **fragment**
+
+```html
+  HTML
+
+  <ul id="lista-dinamica"></ul>
+
+  <template>
+    <li class="list">
+      <b>nombre:  
+        <span class="text-danger">descripción...</span>
+      </b>      
+    </li>
+  </template>
+```
+
+La etiqueta < template > se puede colocar en cualquier parte del html.
+Hay quienes prefieren colocarlos al final.
+En mi opinión es mejor colocarlo dentro de la etiqueta donde se va a renderizar.
+
+```javascript
+  const lista = document.getElementById("lista-dinamica");
+  const arrayItem = ["item 1", "item 2", "item 3"];
+
+  const fragment = document.createDocumentFragment();
+  const template = document.querySelector("#template-li").content;
+
+  arrayItem.forEach((item) => {
+    template.querySelector("span").textContent = item;
+    const clone = template.cloneNode(true);
+    // const clone = document.importNode(template, true);
+    fragment.appendChild(clone);
+  });
+
+  lista.appendChild(fragment);
+```
+
+---
+---
+
+## **Evento click**
+
+---
+
+## **onClick**
+
+---
+## **addEventListener**
+
+```html
+<!DOCTYPE html>
+ 
+ <html lang="es">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+        crossorigin="anonymous"
+      />
+    </head>
+  
+    <body>
+      <div class="container py-5 text-center bg-warning">
+        <button class="btn btn-info">Aumentar</button>
+        <button class="btn btn-danger">Disminuir</button>
+        <h4 class="mt-5">Contador: <span id="resultado">0</span></h4>
+      </div>
+
+      <template id="template-contador"> </template>
+    
+    </body>
+  
+  </html>
+
+```
+
+```javascript
+  const resultado = document.getElementById("resultado");
+  const btnAgregar = document.querySelector(".btn-info");
+  let contador = 0;
+
+  btnAgregar.addEventListener("click", () => {
+    console.log("diste click");
+    contador++;
+    pintarContador();
+  });
+
+  pintarContador = () => {
+    resultado.textContent = contador;
+  };
+```
+
+---
+
+## **Event Delegation** y **stopPropagation** (Ejemplo)
+
+```javascript
+  const resultado = document.getElementById("resultado");
+  const container = document.querySelector(".container");
+  let contador = 0;
+
+  container.addEventListener("click", (e) => {
+    // console.log('click')
+    // console.log(e.target)
+    // console.log(e.target.classList.contains('btn-info'))
+    if (e.target.classList.contains("btn-danger")) {
+      contador--;
+      pintarContador();
+    }
+
+    if (e.target.classList.contains("btn-info")) {
+      contador++;
+      pintarContador();
+    }
+
+    e.stopPropagation()
+  });
+
+  document.body.addEventListener('click', e => {console.log('body')})
+
+  pintarContador = () => {
+    resultado.textContent = contador;
+  };
+```
+
+---
