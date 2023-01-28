@@ -998,7 +998,7 @@ Existe una sintaxis más corta para los metodos en objetos literales:
 ### Sintaxis báscia de Class
 
 **`En informática, una clase es un molde para la creación de objetos de datos según un modelo predefinido.
-Cada clase es un modelo que define un conjunto de variables, y métodos apropiados para operar con dichos datos.`_**
+Cada clase es un modelo que define un conjunto de variables, y métodos apropiados para operar con dichos datos.`**
 
 La sintaxis básica es:
 
