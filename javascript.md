@@ -116,6 +116,16 @@
 ---
 ---
 
+## **Propiedades y Métodos de javaScript**
+
+## Window.innerWidth / innerWidth
+
+Esto La propiedad es de solo lectura y no tiene un valor predeterminado.
+Devuelve el ancho interior de la ventana en píxeles Esto incluye el ancho de la barra de desplazamiento vertical, si está presente.
+
+---
+---
+
 ## **ARRAYS**
 
 Un Array un conjunto ordenado de elementos
