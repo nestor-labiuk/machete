@@ -118,10 +118,78 @@
 
 ## **Propiedades y Métodos de javaScript**
 
-## Window.innerWidth / innerWidth
+---
+
+* ## Window.innerWidth(Height)
+* ## innerWidth(Height)
 
 Esto La propiedad es de solo lectura y no tiene un valor predeterminado.
 Devuelve el ancho interior de la ventana en píxeles Esto incluye el ancho de la barra de desplazamiento vertical, si está presente.
+
+* ### **Ejemplo :** En pantalla se muestra la medida de la ventana
+
+```html
+  HTML
+
+  <p>Resize the browser window to fire the <code>resize</code> event.</p>
+  <p>Window height: <span id="height"></span></p>
+  <p>Window width: <span id="width"></span></p>
+```
+
+```javascript
+  javascript
+
+  const heightOutput = document.querySelector("#height");
+  const widthOutput = document.querySelector("#width");
+
+  function updateSize() {
+    heightOutput.textContent = window.innerHeight;
+    widthOutput.textContent = window.innerWidth;
+  }
+
+  updateSize();
+  window.addEventListener("resize", updateSize);
+```
+
+---
+
+* ## setTimeOut()
+
+Este método establece un temporizador que ejecuta una función o especifica pieza de código una vez que el temporizador expira.
+
+```javascript
+  javascript
+
+  setTimeout(code)
+  setTimeout(code, delay)
+
+  setTimeout(functionRef)
+  setTimeout(functionRef, delay)
+  setTimeout(functionRef, delay, param1)
+  setTimeout(functionRef, delay, param1, param2)
+  setTimeout(functionRef, delay, param1, param2, /* … ,*/ paramN)
+
+  setTimeout(() => {
+    console.log("Delayed for 1 second.");
+  }, 1000)
+
+```
+
+setTimeout()es una función asíncrona, lo que significa que la función del temporizador no pausará la ejecución de otras funciones en la pila de funciones. En otras palabras, no puede utilizar setTimeout()para crear una "pausa" antes de que se active la siguiente función en la pila de funciones.
+
+```javascript
+  javascript
+
+  setTimeout(() => {console.log("this is the first message")}, 5000);
+  setTimeout(() => {console.log("this is the second message")}, 3000);
+  setTimeout(() => {console.log("this is the third message")}, 1000);
+
+  Output:
+
+  "this is the third message"
+  "this is the second message"
+  "this is the first message"
+```
 
 ---
 ---
