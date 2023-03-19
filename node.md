@@ -47,6 +47,29 @@ $ node app.js
 
 En el archivo package.json que se instala con node tenemos los scripts donde podemos agregar scripts personalizados. Por ejemplo para correr nuestro programa
 en el script escribimos: "start": "node app.js".
+
+```json
+  package.json
+
+  {
+    "name": "clase-01",
+    "version": "0.0.1",
+    "description": "nuevo servidor de la clase 1 de back",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node app.js",
+    },
+    "author": "Nestor Labiuk",
+    "license": "MIT",
+    "dependencies": {
+      "express": "^4.18.2",
+      "nodemon": "^2.0.21"
+    }
+  }
+
+```
+
 Ahora podemos correr en consola:
 
 ```js
@@ -135,6 +158,7 @@ Hay dos maneras crear un servidor web con express, la forma antigua es con commo
 
 ```javascript
   javascript
+  app.js
 
   const express = require('express')
 
@@ -164,6 +188,7 @@ Tambien vamos a pasar la respuesta en formato json.
 
 ```javascript
   javascript
+  app.js
 
   app.get('/', (req, res) => {
     res.status(201).json('GET request');
@@ -205,21 +230,24 @@ Para ver la descripción completa visita el siguiente enlace:
 ---
 ---
 
-## **Creando nuestro proyecto**
+## **Refactorizar parte 1**
 
-Ahora que tenemos las herramientas básicas podemos comenzar nuetro proyecto de backend
+Ahora que tenemos las herramientas básicas podemos comenzar a refactorizar el código
 
 ---
 
 + ### **Creando nuestro servidor**
 
-Creamos un archivo llamado 'server.js' dentro de una carpeta 'src'.
-Dentro de este archvo vamos a crear una clase server con un constructor y los métodos  listen() y  rutes()
++ ### CommondJS
 
-Como estamos usando commond.js para exportar devemos usar el método module.exports.
+Creamos una carpeta *src* y dentro un archivo con el nombre de *server.js.*
+Dentro de este archvo vamos a crear una class *Server* con un constructor y los métodos  listen() y  rutes()
+
+Como estamos usando commond.js para exportar devemos usar el método *module.exports.*
 
 ```javascript
   javascript
+  server.js
 
   const express = require('express')
 
@@ -237,7 +265,7 @@ Como estamos usando commond.js para exportar devemos usar el método module.expo
   
     listen() {
       this.app.listen(8080, () => {
-        console.log('Servidor levantado en la puerto 8080')
+        console.log('El servidor esta corriendo en la puerto 8080')
       })
     }
   }
@@ -248,6 +276,125 @@ Como estamos usando commond.js para exportar devemos usar el método module.expo
 ```
 
 ---
+
++ ### **Instanciar un nuevo servidor**
+
+Ahora usando la class *Server* que creamos en el archivo server.js instanciamos una nueva clase.
+primero debemon importar en archivo y luego llamamos a los métodos listen() y routes()
+
+```javascript
+  javascript
+  app.js
+
+  const { Server } = require("./src/server.routes");
+
+  const server = new Server
+
+  server.routes()
+  server.listen()
+
+```
+
+---
+
+Ahora agregamos mas rutas a nuestra class *Server* y en el constructor agregamos *this.routes()* de esta manera no tenemos que llamar al las rutas en nuestro app.js
+
+```javascript
+  javascript
+  server.js
+
+  const express = require('express')
+
+  class Server {
+  
+    constructor(){
+      this.app = express()
+
+      this.routes()
+    }
+
+    routes() {
+      this.app.get('/api', (req, res) => {
+        res.status(201).json('Probando el servidor')
+      })
+      this.app.get('/api/users', (req, res) => {
+        res.status(201).json('obtuviste un usuario')
+      })
+      this.app.delete('/api/delete', (req, res) => {
+        res.status(201).json('Borraste un usuario')
+      })
+    }
+
+    listen() {
+      this.app.listen(8080, () => {
+        console.log('Servidor levantado en la puerto 8080')
+      })
+    }
+  }
+
+  module.exports = {
+    Server
+  }
+
+```
+
+```javascript
+  javascript
+  app.js
+
+  const { Server } = require("./src/server.routes");
+
+  const server = new Server
+
+  server.listen()
+
+```
+
+---
+
+## **Refactorizar parte 2**
+
+Podemos mejorar nuestro código separandolo en distintos archivos y carpetas
+
+---
+
+Se puede ordenar de distintas maneras. Nosotros vamos a crear una carpeta *routes* , una carpeta *controllers* y si es necesario una carpeta llamada *models*.
+Algunos desarrolladores colocan el *server.js* dentro de la carpeta de *models*, pero en nuestro caso la colocamos solo dentro de la carpeta *src*.
+
+---
+
+### Nos vamos centrar en *users*
+
+Dentro de la carpeta *routes* vamos a colocar todas nuestra rutas , en nustro caso vamos a crear la ruta usuarios.
+Podemos crear el archivo *users.js* dentro de *rutes*, pero hay otra forma de nombrarlo que puede resultar mas semántico , por eso nostros vamos a nombrar las rutas siguiendo el siguiente patron nombre-ruta.routes.js, para serguir con el ejemplo vamos a crear dentro de rutes el archivo *users.routes.js*.
+
+---
+
+Hasta ahora llamamos a la libreria express y en nuesatro caso luego deberiamos llamar a su propiedad de enrutamiento Router
+
+```javascript
+  javascript
+  users.routes.js
+
+  const express = require ('express)
+
+  express.Routes
+  
+```
+
+Para evitar esto podemos desestructurar express y extraer el metodo Routes
+
+```javascript
+  javascript
+
+  const { Routes} = require('express')
+```
+
+---
+
+Una vez que tenemos el metodo *Routes* definimos una funcion en una constante llamada *rutes*(El nobre de la *const routes* es por convención), que es un función de enrutamiento en la que usamos el método Routes().
+
+Ahora podemos acceder a todos los metodos de las rutas , ej : get , put, delete , etc.
 
 + ### **Con ES Modules**
 
@@ -310,6 +457,29 @@ Este comando en ocaciones no funciona.
 Entonces en nuestro archivo package.json creamos un nuevo escript:
 
 "dev": "nodemon app.js"
+
+```json
+  package.json
+
+  {
+    "name": "clase-01",
+    "version": "0.0.1",
+    "description": "nuevo servidor de la clase 1 de back",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node app.js",
+      "dev": "nodemon app.js"
+    },
+    "author": "Nestor Labiuk",
+    "license": "MIT",
+    "dependencies": {
+      "express": "^4.18.2",
+      "nodemon": "^2.0.21"
+    }
+  }
+
+```
 
 Ahora podemos ejecutar
 
