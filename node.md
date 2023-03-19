@@ -152,7 +152,7 @@ Hay dos maneras crear un servidor web con express, la forma antigua es con commo
 
 ---
 
-## **Métodos de ruta**
++ ## **Métodos de ruta**
 
 Un método de ruta se deriva de uno de los métodos HTTP y se adjunta a una instancia de la clase express.
 
@@ -165,27 +165,22 @@ Tambien vamos a pasar la respuesta en formato json.
 ```javascript
   javascript
 
-  // GET method route
   app.get('/', (req, res) => {
     res.status(201).json('GET request');
   });
 
-  // POST method route
   app.post('/', (req, res) => {
     res.status(201).json('POST request');
   });
 
-  // PUT method route
   app.put('/api', (req, res) => {
     res.status(201).json('PUT request')
   })
 
-  // PATCH method route
   app.patch('/api', (req, res) => {
     res.status(201).json('PATCH request')
   })
 
-  // DELETE method route
   app.delete('/api', (req, res) => {
     res.status(201).json('DELETE request')
   })
@@ -196,7 +191,61 @@ Tambien vamos a pasar la respuesta en formato json.
 
 + ### **Códigos de estado de respuesta HTTP**
 
- "https://developer.mozilla.org/es/docs/Web/HTTP/Status"
+Los códigos de estado de respuesta HTTP indican si se ha completado satisfactoriamente una solicitud HTTP específica. Las respuestas se agrupan en cinco clases:
+
+1. Respuestas informativas (100–199),
+2. Respuestas satisfactorias (200–299),
+3. Redirecciones (300–399),
+4. Errores de los clientes (400–499),
+5. Errores de los servidores (500–599).
+
+Para ver la descripción completa visita el siguiente enlace:
+"https://developer.mozilla.org/es/docs/Web/HTTP/Status"
+
+---
+---
+
+## **Creando nuestro proyecto**
+
+Ahora que tenemos las herramientas básicas podemos comenzar nuetro proyecto de backend
+
+---
+
++ ### **Creando nuestro servidor**
+
+Creamos un archivo llamado 'server.js' dentro de una carpeta 'src'.
+Dentro de este archvo vamos a crear una clase server con un constructor y los métodos  listen() y  rutes()
+
+Como estamos usando commond.js para exportar devemos usar el método module.exports.
+
+```javascript
+  javascript
+
+  const express = require('express')
+
+  class Server {
+    
+    constructor(){
+      this.app = express()
+    }
+
+    routes() {
+      this.app.get('/api', (req, res) => {
+        res.json('Probando el servidor')
+      })
+    }
+  
+    listen() {
+      this.app.listen(8080, () => {
+        console.log('Servidor levantado en la puerto 8080')
+      })
+    }
+  }
+
+  module.exports = {
+    Server
+  }
+```
 
 ---
 
@@ -217,6 +266,7 @@ Instala la aplicación de escritorio de postman desde el siguiente enlace
 "https://www.postman.com/downloads/"
 
 ---
+
 ---
 
 ## **Nodemon**
