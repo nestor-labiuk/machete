@@ -120,13 +120,14 @@
 
 ---
 
-* ## Window.innerWidth(Height)
-* ## innerWidth(Height)
+* ## **Window.innerWidth(Height)**
 
-Esto La propiedad es de solo lectura y no tiene un valor predeterminado.
-Devuelve el ancho interior de la ventana en píxeles Esto incluye el ancho de la barra de desplazamiento vertical, si está presente.
+* ## **innerWidth(Height)**
 
-* ### **Ejemplo :** En pantalla se muestra la medida de la ventana
+Esto propiedad es de solo lectura y no tiene un valor predeterminado.
+Devuelve el ancho(alto) interior de la ventana en píxeles Esto incluye el ancho(alto) de la barra de desplazamiento vertical, si está presente.
+
+* ### **Ejemplo :** En pantalla se muestra la medida de la ventana en tiempo real
 
 ```html
   HTML
@@ -135,6 +136,9 @@ Devuelve el ancho interior de la ventana en píxeles Esto incluye el ancho de la
   <p>Window height: <span id="height"></span></p>
   <p>Window width: <span id="width"></span></p>
 ```
+
+* **resize event :** El evento se activa cuando se cambia el tamaño de la vista del documento (ventana).
+los eventos solo se activan en el objeto window.
 
 ```javascript
   javascript
@@ -147,13 +151,29 @@ Devuelve el ancho interior de la ventana en píxeles Esto incluye el ancho de la
     widthOutput.textContent = window.innerWidth;
   }
 
-  updateSize();
+  // updateSize();
   window.addEventListener("resize", updateSize);
+```
+
+* **onresize event :** Se puede aplicar a distintos elementos del documento.
+
+```javascript
+  javascript
+
+  const heightOutput = document.querySelector("#height");
+  const widthOutput = document.querySelector("#width");
+
+  function reportWindowSize() {
+  heightOutput.textContent = window.innerHeight;
+  widthOutput.textContent = window.innerWidth;
+  }
+
+
 ```
 
 ---
 
-* ## setTimeOut()
+* ## **setTimeOut()**
 
 Este método establece un temporizador que ejecuta una función o especifica pieza de código una vez que el temporizador expira.
 
@@ -246,7 +266,7 @@ Un Array un conjunto ordenado de elementos
   const carros = ['honda accord', 'ford mustang', 'toyota corolla', 'fiat 500'];
 ```
 
-* *Método #1 ( for )*
+* #### *Método #1 ( for )*
 
 ```javascript
   javaScript
@@ -256,7 +276,7 @@ Un Array un conjunto ordenado de elementos
   }
 ```
 
-* *Método #2 ( for of )*
+* #### *Método #2 ( for of )*
 
 ```javascript
   javaScript
@@ -266,7 +286,7 @@ Un Array un conjunto ordenado de elementos
   }
 ```
 
-* *Método #3 ( forEach )*
+* #### *Método #3 ( forEach )*
 
 ```javascript
   javaScript
@@ -293,19 +313,19 @@ Un Array un conjunto ordenado de elementos
 
 ---
 
-## Métodos de **Arrays**
+## **Métodos de Arrays**
 
-* pop()
-* shift()
-* push()
-* unshift()
-* splice()
-* slice()
-* spread operator (...)
+* **pop()**
+* **shift()**
+* **push()**
+* **unshift()**
+* **splice()**
+* **slice()**
+* **spread operator (...)**
 
 ---
 
-## **pop()**
+### **pop()**
 
 Saca el ultimo elemento
 
@@ -317,7 +337,7 @@ Saca el ultimo elemento
 
 ---
 
-## **shift()**
+### **shift()**
 
 Saca el primer elemento
 
@@ -327,7 +347,7 @@ Saca el primer elemento
   console.log(carros.shift());
 ```
 
-## **push()**
+### **push()**
 
 Agrega un elemento al final
 
@@ -341,7 +361,7 @@ Agrega un elemento al final
 
 ---
 
-## **unshift()**
+### **unshift()**
 
 Agrega un elemento al principio de la matriz
 
@@ -355,7 +375,7 @@ Agrega un elemento al principio de la matriz
 
 ---
 
-## **splice()**
+### **splice()**
 
 Borra o agrega un elemento de acuerdo con el indice especificado
 
@@ -376,7 +396,7 @@ Si no le indico nada me borra todo splice()
 
 ---
 
-## **slice()**
+### **slice()**
 
 Devuelve un nuevo array copiando todos los elentos  desde el pricipio hasta el final sin incluir el final
 
@@ -392,7 +412,7 @@ Si no le indico nada me copia todo slice()
 
 ---
 
-## **spread operator (...)**
+### **spread operator (...)**
 
 Trasforma un array en una lista de argumentos
 
@@ -435,26 +455,26 @@ Al anteponer los tres puntos que representan al spread operator transformamos la
 ---
 ---
 
-## Paradigma funcional
+## **Paradigma funcional**
 
 Paradigma funcional: Es una forma de programar, consiste aplicar funciones a nuestros valores iniciales, sin modificarlos directamente. Sin realizar **Mutaciones**.
 
 ---
 ---
 
-## Métodos de **Array**
+## **Métodos de Array**
 
-* forEach()
-* indexOf()
-* include()
-* map()
-* filter()
-* find()
-* reduce()
+* **forEach()**
+* **indexOf()**
+* **include()**
+* **map()**
+* **filter()**
+* **find()**
+* **reduce()**
 
 ---
 
-## **forEach()**
+### **forEach()**
 
 El método arr.forEach permite ejecutar una función a cada elemento del array.
 
@@ -477,7 +497,7 @@ Por ejemplo, el siguiente código muestra cada elemento del array:
 
 ---
 
-## **indexOf()**
+### **indexOf()**
 
 arr.indexOf(item, from) busca un item comenzando desde el index from, y devuelve el index donde fue encontrado. Si no encontró nada, entonces devuelve -1.
 
@@ -495,7 +515,7 @@ Usualmente este método se usa con un solo argumento: el item a buscar.
 
 ---
 
-## **includes()**
+### **includes()**
 
 arr.includes(item, from) – busca item comenzando desde el índice from, devuelve true en caso de ser encontrado.
 
@@ -516,14 +536,14 @@ Si queremos comprobar si un elemento existe en el array, pero no necesitamos sab
 
 ---
 
-## **map()**
+### **map()**
 
 Se utiliza cuando queremos obtener un nuevo array de uno ya existente.
 Esa transformación de hace a traves de una función que programamos nosotros
 
 ---
 
-* ### **Ejemplo 1 :** obtener un nuevo array con el doble del valor de los numeros del array original
+* #### **Ejemplo 1 :** obtener un nuevo array con el doble del valor de los numeros del array original
 
 ```javascript
   javaScript
@@ -564,7 +584,7 @@ También podemos usar if o for dentro de los metodos de las funciones
 
 ---
 
-* ### **Ejemplo 2 :** Obtener un nuevo array con los pruductos que tengan un valor mayor a  3000 y aplicarles un descuento de 10%
+* #### **Ejemplo 2 :** Obtener un nuevo array con los pruductos que tengan un valor mayor a  3000 y aplicarles un descuento de 10%
 
  ```javascript
   javaScript
@@ -603,7 +623,7 @@ La Soklución correcta seria
 
 ---
 
-* ### **Ejemplo 3 :** map nos sirve tambien para extraer datos de un objeto
+* #### **Ejemplo 3 :** map nos sirve tambien para extraer datos de un objeto
 
 Digamos que queremos obteer los id de un objeto
 
@@ -624,7 +644,7 @@ Hay otra solución que se usa mucho que es desarmando el parámetro recibido
 ---
 ---
 
-## **filter()**
+### **filter()**
 
 Se utiliza para obtener un nuevo array filtrado por alguna condición
 La función que utilizamos para filtrar debe ser del tipo que devuelve true o false
@@ -632,7 +652,7 @@ Esta función recibe el nombre de predicado
 
 ---
 
-* ### **Ejemplo 1 :** filtrar por precios
+* #### **Ejemplo 1 :** filtrar por precios
 
 ```javascript
   javaScript
@@ -662,7 +682,7 @@ Si ahora queremos filtrar los productos caros podemos utilizar la función ***is
 
 ---
 
-* ### **Ejemplo 2 :** Eliminar los números repetidos de un array utilizando ***indexOf()***
+* #### **Ejemplo 2 :** Eliminar los números repetidos de un array utilizando ***indexOf()***
 
 ```javascript
   javaScript
@@ -676,7 +696,7 @@ Si ahora queremos filtrar los productos caros podemos utilizar la función ***is
 
 ---
 
-## **find()**
+### **find()**
 
 El método find busca un único elemento (el primero) que haga a la función devolver true.
 
@@ -700,13 +720,13 @@ Ejemplos:
   console.log(apple) // '🍎'
 ```
 
-## **reduce()**
+### **reduce()**
 
 Suma todos los valores de un array
 
 ---
 
-* ### **Ejemplo 1 :** obtenerla suma de un array de números
+* #### **Ejemplo 1 :** obtenerla suma de un array de números
 
 ```javascript
   javaScript
@@ -843,7 +863,7 @@ Si no ponemos el paramtro 0 nos deveriamos asegurar que el array no este vacio
 
 ## **OBJETOS definicion 2 (Rollinfg)**
 
-## Alcance de la clase
+### **Alcance de la clase**
 
 * Repaso de objetos
 * POO
@@ -852,7 +872,7 @@ Si no ponemos el paramtro 0 nos deveriamos asegurar que el array no este vacio
 
 ---
 
-### Repaso de objetos
+### **Repaso de objetos**
 
 Los objetos, junto a las funciones, constituyen las bases de javascript.
 
@@ -903,7 +923,7 @@ Se puede acceder a los valores de las propiedades utilizando la notación de pun
   console.log( user.age )
 ```
 
-### El bucle "for..in"
+### **El bucle "for..in"**
 
 Para recorrer todas las claves de un objeto existe una forma especial de bucle: `for..in`.
 
@@ -926,7 +946,7 @@ Para recorrer todas las claves de un objeto existe una forma especial de bucle: 
 
 ---
 
-### Referencia de objetos y copia
+### **Referencia de objetos y copia**
 
 Una de las diferencias fundamentales entre objetos y primitivos es que los **objetos** son almacenados y copiados “por referencia”, en cambio los **primitivos**: `strings`, `number`, `boolean`, etc. son asignados y copiados “como un valor completo”.
 
@@ -990,7 +1010,7 @@ Podemos usar cualquiera de las variables para acceder al objeto y modificar su c
 
 ---
 
-### Comparación por referencia
+### **Comparación por referencia**
 
 Dos objetos son iguales solamente si ellos son el mismo objeto. Es decir, si ambas variables tienen referencia al mismo objeto.
 
@@ -1035,7 +1055,7 @@ En otras palabras `const user` solo da un error solamente si tratamos asignar `u
 
 ---
 
-### Métodos del objeto
+### **Métodos del objeto**
 
 Los objetos son creados usualmente para representar entidades en el mundo real, como usuario, órdenes, etc.
 
@@ -1073,7 +1093,7 @@ Existe una sintaxis más corta para los metodos en objetos literales:
 
 ---
 
-### Sintaxis báscia de Class
+### **Sintaxis báscia de Class**
 
 **`En informática, una clase es un molde para la creación de objetos de datos según un modelo predefinido.
 Cada clase es un modelo que define un conjunto de variables, y métodos apropiados para operar con dichos datos.`**
@@ -1133,13 +1153,13 @@ Entonces podemos llamar a sus métodos, como `user.sayHi()`
 ---
 ---
 
-## **DOM :** Document Object Model
+## **DOM : Document Object Model**
 
 El DOM da una representación del documento como un grupo de nodos y objetos estructurados que tienen propiedades y métodos. Esencialmente, conecta las páginas web a scripts o lenguajes de programación.
 
 ---
 
-## **Document**
+### **Document**
 
 * Cuando un documento HTML se carga en un navegador web, se convierte en un objeto de documento.
 * El objeto de documento es el nodo raíz del documento HTML.
@@ -1148,7 +1168,7 @@ El DOM da una representación del documento como un grupo de nodos y objetos est
 
 ---
 
-## Acceder al **DOM**
+### **Acceder al DOM**
 
 ```html
   HTML
@@ -1173,7 +1193,7 @@ El DOM da una representación del documento como un grupo de nodos y objetos est
 
 ---
 
-## Element
+### **Element**
 
 Una vez que tenemos el elemento podemos modificarlo.
 
@@ -1206,7 +1226,7 @@ Una vez que tenemos el elemento podemos modificarlo.
 
 ---
 
-## createElement()
+### **createElement()**
 
 En un documento HTML, el método document.createElement() crea un elemento HTML especificado por su tagName.
 
@@ -1292,7 +1312,7 @@ Aquí se genera **Reflow**: Ocurre cuando un navegador debe procesar y dibujar p
 
 ---
 
-## **Fragment**
+### **Fragment**
 
 Se utiliza como una versión ligera de Document que almacena un segmento de una estructura de documento compuesta de nodos como un documento estándar.
 
@@ -1324,7 +1344,7 @@ Por ende en un fragment vamos a guardar todo un template o nodos HTML que luego 
 
 ---
 
-## insetar la lista en sentido inverso
+### **insetar la lista en sentido inverso**
 
 ```html
   HTML
@@ -1358,7 +1378,7 @@ Por ende en un fragment vamos a guardar todo un template o nodos HTML que luego 
 
 ---
 
-## **< template >**
+### **< template >**
 
 El elemento HTML < template > es un mecanismo para mantener el contenido HTML del lado del cliente que no se renderiza cuando se carga una página, pero que posteriormente puede ser instanciado durante el tiempo de ejecución empleando JavaScript.
 
@@ -1392,9 +1412,9 @@ En mi opinión es mejor colocarlo dentro de la etiqueta donde se va a renderizar
   const template = document.querySelector("#template-li").content;
 
   arrayItem.forEach((item) => {
-    template.querySelector("span").textContent = item;
     const clone = template.cloneNode(true);
     // const clone = document.importNode(template, true);
+    template.querySelector("span").textContent = item;
     fragment.appendChild(clone);
   });
 
@@ -1404,15 +1424,15 @@ En mi opinión es mejor colocarlo dentro de la etiqueta donde se va a renderizar
 ---
 ---
 
-## **Evento click**
+### **Evento click**
 
 ---
 
-## **onClick**
+### **onClick**
 
 ---
 
-## **addEventListener**
+### **addEventListener**
 
 ```html
   HTML
@@ -1467,7 +1487,7 @@ En mi opinión es mejor colocarlo dentro de la etiqueta donde se va a renderizar
 
 ---
 
-## **Event Delegation** y **stopPropagation** (Ejemplo)
+### **Event Delegation** y **stopPropagation** (Ejemplo)
 
 ```javascript
   javaScript
