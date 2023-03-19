@@ -5,6 +5,11 @@ Es multiplataforma, de código abierto, con E/S de datos y corre con el  motor V
 
 ---
 
+Para la ralización de nuestros proyectos vamos a utilizar [Postman](#postman) y [Nodemon](#nodemon).
+Podes encontrar un pequeño resumen haciendo click en la enlace o al final de este documento.
+
+---
+
 + ## **Iniciar proyecto en node.js**
 
 Para iniciar un proyecto en node.js corremos el comando node init en la consola, debemos estar ubicados en la carpeta destinada al proyecto.
@@ -202,6 +207,8 @@ Tambien vamos a pasar la respuesta en formato json.
 
 ## **Postman**
 
+[Volver al inicio](#nodejs)
+
 Postman es una plataforma API para que los desarrolladores diseñen, construyan, prueben e iteren sus APIs.
 
 Postman permite y hace más sencilla la creación y el uso de APIs. Esta herramienta es muy útil para programar porque da la posibilidad hacer pruebas y comprobar el correcto funcionamiento de los proyectos que realizan los desarrolladores web.
@@ -214,6 +221,8 @@ Instala la aplicación de escritorio de postman desde el siguiente enlace
 
 ## **Nodemon**
 
+[Volver al inicio](#nodejs)
+
 Nodemon es una utilidad que monitoriza cualquier cambios en su codigo y reinicia automáticamente su servidor. Perfecto para el desarrollo.
 
 + ## **Características**
@@ -223,8 +232,8 @@ Nodemon es una utilidad que monitoriza cualquier cambios en su codigo y reinicia
   + Ignorar archivos o directorios específicos.
   + Ver directorios específicos.
   + Funciona con aplicaciones de servidor o utilidades de ejecución única y REPL.
-  + Código abierto y disponible en github .
-
+  + Código abierto y disponible en github.
+  
 ---
 
 + ### **Intalacion**
@@ -260,3 +269,7 @@ Ahora podemos ejecutar
 Nestor@DESKTOP-2023 EQUIPO ~/carpeta-del-proyecto 
 $ npm run dev
 ```
+
+---
+
+[Volver al inicio](#nodejs)
