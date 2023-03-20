@@ -476,6 +476,7 @@ Para seguir mejorando nuestro código ahora vamos a usar los controladores.
 Estos son archivos donde vamos a colocar la funciones de callback que usamos en las rutas y luego las llamaremos por referencia.
 
 Siguiendo con nuestro ejemplo de *usuarios* vamos a crear un archivo llamado users.controller.js dentro de la carpeta controllers que habiamos creado anteriormente. [ver](#refactorizar-parte-2)
+También agregamos una neva ruta para editar usuarios
 
 ---
 
