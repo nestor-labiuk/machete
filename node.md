@@ -241,7 +241,7 @@ Ahora que tenemos las herramientas básicas podemos comenzar a refactorizar el c
 + ### CommondJS
 
 Creamos una carpeta *src* y dentro un archivo con el nombre de *server.js.*
-Dentro de este archvo vamos a crear una class *Server* con un constructor y los métodos  listen() y  rutes()
+Dentro de este archivo vamos a crear una class *Server* con su constructor y los métodos  listen() y  rutes()
 
 Como estamos usando commond.js para exportar devemos usar el método *module.exports.*
 
@@ -279,14 +279,14 @@ Como estamos usando commond.js para exportar devemos usar el método *module.exp
 
 + ### **Instanciar un nuevo servidor**
 
-Ahora usando la class *Server* que creamos en el archivo server.js instanciamos una nueva clase.
-primero debemon importar en archivo y luego llamamos a los métodos listen() y routes()
+Ahora usando la class *Server* que creamos en el archivo server.js instanciamos una nueva clase en nuestro archivo *app.js*
+Primero debemos importar *server.js* y luego llamamos a los métodos listen() y routes()
 
 ```javascript
   javascript
   app.js
 
-  const { Server } = require("./src/server.routes");
+  const { Server } = require("./src/server");
 
   const server = new Server
 
@@ -314,14 +314,11 @@ Ahora agregamos mas rutas a nuestra class *Server* y en el constructor agregamos
     }
 
     routes() {
-      this.app.get('/api', (req, res) => {
-        res.status(201).json('Probando el servidor')
-      })
       this.app.get('/api/users', (req, res) => {
-        res.status(201).json('obtuviste un usuario')
+        res.status(201).json('Obtuviste los usuarios')
       })
-      this.app.delete('/api/delete', (req, res) => {
-        res.status(201).json('Borraste un usuario')
+      this.app.post('/api/users', (req, res) => {
+        res.status(201).json('Creaste un usuario')
       })
     }
 
@@ -342,7 +339,7 @@ Ahora agregamos mas rutas a nuestra class *Server* y en el constructor agregamos
   javascript
   app.js
 
-  const { Server } = require("./src/server.routes");
+  const { Server } = require("./src/server");
 
   const server = new Server
 
@@ -363,14 +360,20 @@ Algunos desarrolladores colocan el *server.js* dentro de la carpeta de *models*,
 
 ---
 
-### Nos vamos centrar en *users*
+Ya que la gran mayoria de las aplicaciones tienen un apartado usuarios:
 
-Dentro de la carpeta *routes* vamos a colocar todas nuestra rutas , en nustro caso vamos a crear la ruta usuarios.
++ ### Nos vamos centrar en *users*
+
+Dentro de la carpeta *routes* vamos a colocar todas nuestra rutas , en nuestro caso vamos a crear la ruta usuarios.
 Podemos crear el archivo *users.js* dentro de *rutes*, pero hay otra forma de nombrarlo que puede resultar mas semántico , por eso nostros vamos a nombrar las rutas siguiendo el siguiente patron nombre-ruta.routes.js, para serguir con el ejemplo vamos a crear dentro de rutes el archivo *users.routes.js*.
 
 ---
 
-Hasta ahora llamamos a la libreria express y en nuesatro caso luego deberiamos llamar a su propiedad de enrutamiento Router
+Ahora vamos a comenzar a crear las rutas y las vamos a separar del *server.js*.
+
+Para eso vamos a usar el archvivo *users.routes.js*
+
+Podriamos llamar a la libreria express y luego  a su propiedad de enrutamiento Router
 
 ```javascript
   javascript
@@ -382,10 +385,13 @@ Hasta ahora llamamos a la libreria express y en nuesatro caso luego deberiamos l
   
 ```
 
-Para evitar esto podemos desestructurar express y extraer el metodo Routes
+---
+
+Ya que solo vamos a necesitar el enrutamiento vamos a desestructurar express y extraer el método Routes
 
 ```javascript
   javascript
+  users.routes.js
 
   const { Routes} = require('express')
 ```
@@ -394,7 +400,129 @@ Para evitar esto podemos desestructurar express y extraer el metodo Routes
 
 Una vez que tenemos el metodo *Routes* definimos una funcion en una constante llamada *rutes*(El nobre de la *const routes* es por convención), que es un función de enrutamiento en la que usamos el método Routes().
 
-Ahora podemos acceder a todos los metodos de las rutas , ej : get , put, delete , etc.
+```javascript
+  javascript
+  users.routes.js
+
+  const { Routes } = require('express')
+
+  const router = Routes()
+  
+```
+
+---
+
+Con router podemos acceder a todos los metodos de las rutas , ej : get , put, delete , etc.
+
+Ahora podemos crear las rutas que necesitamos en *users.rutes.js* y las exportamos a *server.js* , donde  vamos a usar la propiedad *use* a la que le pasamos los como parametros la ruta en la que estamos y a la que queremos dirigirnos.
+
+```javascript
+  javascript
+  users.routes.js
+  
+  const { Router} = require('express')
+
+  const router = Router()
+
+  router.get('/users', (req, res) => {
+    res.json('Obtuviste los usuarios')
+  })
+
+  router.post('/users', (req, res) => {
+    res.json('creaste un usuario')
+  })
+
+  module.exports = {
+    router
+  }
+```
+
+```javascript
+  javascript
+  server.js
+
+  const express = require('express')
+  const { router} = require('./routes/users.routes',)
+
+  class Server {
+
+    constructor() {
+      this.app = express()
+      this.routes()
+    }
+
+    routes() {
+      this.app.use('/api', router)
+    }
+
+    listen() {
+      this.app.listen(8080, () => {
+        console.log('Servidor levantado en la puerto 8080')
+      })
+    }
+  }
+
+  module.exports = {
+    Server
+  }
+```
+
+---
+
+## **Refactorizar parte 3**
+
+Para seguir mejorando nuestro código ahora vamos a usar los controladores.
+
+Estos son archivos donde vamos a colocar la funciones de callback que usamos en las rutas y luego las llamaremos por referencia.
+
+Siguiendo con nuestro ejemplo de *usuarios* vamos a crear un archivo llamado users.controller.js dentro de la carpeta controllers que habiamos creado anteriormente. [ver](#refactorizar-parte-2)
+
+---
+
+Nuestro código quedaria estructurado de la siguiente manera:
+
+```javascript
+  javascript
+  users.cotrollers.js
+
+  const getUsers = (req, res) => {
+  res.json('Obtuviste los usuarios')
+  }
+  const createUsers = (req, res) => {
+    res.json('Creaste un usurio')
+  }
+  const editUsers = (req, res) => {
+    res.json('Editaste un usuario')
+  }
+
+  module.exports = {
+    getUsers,
+    createUsers,
+    editUsers
+  }
+
+```
+
+```javascript
+  javascript
+  users.routes.js
+
+  const { Router } = require('express')
+  const { getUsers, createUsers, editUsers } = require('../controllers/users.controllers')
+
+  const router = Router()
+
+  router.get('/users', getUsers)
+  router.post('/users', createUsers)
+  router.put('/users', editUsers)
+
+  module.exports = {
+    router
+  }
+  
+```
+
+---
 
 + ### **Con ES Modules**
 
