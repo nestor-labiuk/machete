@@ -11,7 +11,6 @@ Este es un formulario clásico con su archivo css para los estilos.
 Para actualizar el formulario usamos useState.
 En react los formularios tienen la propiedad de *onSubmit* y *onReset* a las cuales les mandamos por referencia las funciones tanto para enviar como para resetear el formulario.
 
-
 ```javascript
   javascript
 
