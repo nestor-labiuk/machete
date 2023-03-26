@@ -154,7 +154,14 @@ $ npm install express
 
 Hay dos maneras crear un servidor web con express, la forma antigua es con commond.js y la mas moderna es con ES Modules.
 
-+ ### **Con commondJS**
+---
+---
+
+## 1. **CommondJS**
+
+Primero vamos a trabajar con commonjs.
+
+Levantamos un servidor:
 
 ```javascript
   javascript
@@ -237,8 +244,6 @@ Ahora que tenemos las herramientas básicas podemos comenzar a refactorizar el c
 ---
 
 + ### **Creando nuestro servidor**
-
-+ ### CommondJS
 
 Creamos una carpeta *src* y dentro un archivo con el nombre de *server.js.*
 Dentro de este archivo vamos a crear una class *Server* con su constructor y los métodos  listen() y  rutes()
@@ -480,7 +485,9 @@ También agregamos una neva ruta para editar usuarios
 
 ---
 
-Nuestro código quedaria estructurado de la siguiente manera:
+### Nuestro código quedaria estructurado de la siguiente manera
+
++ En la carpeta Controllers dentro de src:
 
 ```javascript
   javascript
@@ -504,6 +511,8 @@ Nuestro código quedaria estructurado de la siguiente manera:
 
 ```
 
++ El la carpeta routes dentro de src:
+
 ```javascript
   javascript
   users.routes.js
@@ -523,11 +532,259 @@ Nuestro código quedaria estructurado de la siguiente manera:
   
 ```
 
++ En la carpeta src:
+
+```javascript
+  javascript
+  server.js
+
+  const express = require('express')
+  const { router} = require('./routes/users.routes',)
+  const { routerProducts } = require('./routes/products.routes')
+
+  class Server {
+
+    constructor() {
+      this.app = express()
+      this.routes()
+    }
+
+    routes() {
+      this.app.use('/api', router)
+      this.app.use('/api', routerProducts)
+    }
+
+    listen() {
+      this.app.listen(8080, () => {
+        console.log('Servidor levantado en la puerto 8080')
+      })
+    }
+  }
+
+  module.exports = {
+    Server
+  }
+```
+
++ En la carpeta raiz:
+
+```javascript
+  javascript
+  app.js
+
+  const { Server } = require("./src/server");
+
+  const server = new Server
+
+  server.listen()
+```
+
+---
 ---
 
-+ ### **Con ES Modules**
+## 2. **ES Modules (parte 1)**
+
+Esta es la forma mas moderna de trabajar. Se usan las palabras clave *import* y *export*.
+
+En las inportaciones tenemos que especificar la extención del archivo.
 
 ---
+
+### Comenzaremos un nuevo proyecto y haremos algunas modificaciones en la instalación
+
+---
+
+Creamos una nueva carpeta y dentro colocamos un archivo *app.js* y una carpeta llamada *src*, dentro de esta colocamos el archivo *server.js*.
+Podemos ver la estructura final de carpetas [AQUI](#carpetas)
+
+---
+
++ instalamos node:
+
+```js
+  consola
+
+Nestor@DESKTOP-2023 EQUIPO ~/carpeta-del-proyecto 
+$ npm init -y
+```
+
++ Instalamos express:
+
+```js
+  consola
+
+Nestor@DESKTOP-2023 EQUIPO ~/carpeta-del-proyecto 
+$ npm install express
+```
+
++ Instalamos nodemon como dependencia de desrrollo
+
+```js
+  consola
+
+Nestor@DESKTOP-2023 EQUIPO ~/carpeta-del-proyecto 
+$ npm install nodemon --save-dev
+```
+
+---
+
+Para poder trabajar con ES Modules tenemos que hacer una configuración en el package.json: agregamos *"type": "modules"*
+
+Tambien agragamos  los escripts para levantar el servidor
+*"start":"node app.js"* y *"dev":"nodemon app.js"*
+
+```json
+  package.json
+
+  {
+    "name": "back-clase-02",
+    "version": "1.0.0",
+    "description": "Práctica de back usando EC Modules",
+    "main": "app.js",
+    "type":"module",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start":"node app.js",
+      "dev":"nodemon app.js"
+    },
+    "keywords": [],
+    "author": "Néstor Labiuk",
+    "license": "MIT",
+    "dependencies": {
+      "express": "^4.18.2"
+    },
+    "devDependencies": {
+      "nodemon": "^2.0.21"
+    }
+  }
+```
+
+---
+
+En la carpeta raiz agregamos los archivos *.env*  y *.gitignore*.
+
+*.env* de envaironment , en este arvhivo se colocan las variables de entorno de nuestro proyecto aqui vamos a colocar el puerto : *PORT=8080*.Tambien agregaremos las rutas para conectarnos con nuestra BBDD.
+*.gitignore* aqui se colocan las carpetas y archivos que no queremos que se suban a nuestro repo. Aqui vamos a colocar por *.env* y *node_modules* entre otros.
+
+---
+
+En nuestra carpeta *routes* vamos a colocar los distintos archivos con las distintas rutas , como digimos anteriormente creamos una varible *const router* para acceder al método Router(), en esa varible vamos a colocar todas las rutas de ese archivo. Si nombramos en todos los archivos al método Router() con la misma variable,*const = routes* cuando la importemos al archivo *server.js* vamos a tener un conflicto de nombre de variable. Tenemos dos alternativas, la primera es nombrar a la variable que contenga al 0 método Router() de manera distinta (Ej: en user *const usersRoutes = Router(), en products productsRoutes = Router()*), la otra forma es aprovecharnos de la propiedad que tenemos al exportamos por default que nos permite nombrarla como nosotros querramos al importarla.
+Nosotros vamos a utizar este último metodo.
+
+Cuando tenemos muchas rutas se usa un archivo tipo barril que normanlmente se nombra como index.js y se coloca dentro de la carpeta routes.
+Este archivo lo que hace es *recibir y exportar las rutas*.
+
+---
+
+```javascript
+  javascript
+  app.js
+  
+  import { Server } from './src/server.js'
+
+  const server = new Server()
+
+  server.listen()
+
+```
+
+---
+
+```javascript
+  javascript
+  server.js
+  
+  import express from 'express'
+  import { usersRoutes } from './routes/index.js'
+
+  export class Server {
+    constructor () {
+      this.app = express()
+      this.routes()
+    }
+
+    routes () {
+      this.app.use('/api/users', usersRoutes)
+    }
+
+    listen () {
+      this.app.listen(8080, () => {
+        console.log('Servisor corriendo en el puerto 8080')
+      })
+    }
+  }
+
+```
+
+---
+
+```javascript
+  javascript
+  index.js
+
+  export { default as userRoutes } from './users.routes.js'
+
+```
+
+En el archivo users.routes.js tenemos dos métodos post para diferenciarlos al mas específico le agregamos *:id* para poder llamarlo con ese parámetro.
+
+```javascript
+  javascript
+  users.routes.js
+  
+  import { Router } from 'express'
+  import { getUsers, getUser, createUser, editUser, deleteUser } from '.././controllers/users.controllers.js'
+  const router = Router()
+
+  router.get('/', getUsers)
+  router.get('/:id', getUser)
+  router.post('/', createUser)
+  router.put('/', editUser)
+  router.delete('/', deleteUser)
+
+  export default router
+
+```
+
+En users.controllers.js pasamos por parámetro el id para poder personalizar el mensaje.
+
+```javascript
+  javascript
+  users.controllers.js
+  
+  export const getUsers = (req, res) => {
+  res.json('Obtuviste los usuarios')
+  }
+
+  export const getUser = (req, res) => {
+    const { id } = req.params
+    res.json(`Obtuviste un usuario con el ${id}`)
+  }
+
+  export const createUser = (req, res) => {
+    res.json('Creaste un usuario')
+  }
+
+  export const editUser = (req, res) => {
+    res.json('Editaste un usuario')
+  }
+
+  export const deleteUser = (req, res) => {
+    res.json('Borraste un usuario')
+  }
+
+```
+
+---
+
+Hasta aca hicimos nuentra aplicación de back usando ES Modules y le agregamos algunas funcionalidades.
+
+---
+
+---
+
+## **ES Modules (parte 2)**
+
 ---
 
 ## **Postman**
@@ -618,6 +875,35 @@ Ahora podemos ejecutar
 Nestor@DESKTOP-2023 EQUIPO ~/carpeta-del-proyecto 
 $ npm run dev
 ```
+
+---
+
+## Carpetas
+
++ nombre-carpeta
+  + dist
+  + node_module
+  + src
+    + controllers
+      + users.controllers.js
+      + products.controllers.js
+    + routes
+      + users.routes.js
+      + products.routes.js
+      + index.js
+    + model
+    + middlewares
+    + db
+    + serer.js
+  + .env
+  + .gitignore
+    + .env
+    + node_module
+    + dist/
+  + app.js
+  + package-lock.json
+  + package.json
+  + readme-md
 
 ---
 
