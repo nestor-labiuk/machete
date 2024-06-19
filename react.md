@@ -135,9 +135,9 @@ En react los formularios tienen la propiedad de *onSubmit* y *onReset* a las cua
 
 + ### **Form 2**
 
-Otra forma de hacer lo mismo es separar el form de los botones , en este caso podriamos tener dos componetes por separado *form* *button*.
+Otra forma de hacer lo mismo es separar el form de los botones , en este caso podríamos tener dos componentes por separado *form* *button*.
 Para hacerlo agregamos un *id* al formulario y este de lo pasamos como valor de la propiedad *form* de los botones.
-En este ejenplo tambien agregamos una validación para las claves.
+En este ejemplo también agregamos una validación para las claves.
 
 ```javascript
   javascript
@@ -245,7 +245,7 @@ Ahora vamos a refactorizar lo que venimos haciendo hasta ahora.
 
 Vamos a usar un solo state, al cual le vamos a pasar como valor inicial un objeto con todas los valores de *value* vacios.
 
-A la función de callback de *setRegisterData* la ponemos entre parentesis porque lo que nos devulve es un objeto. Con el spread operator lo que hacemos es iterar el estado previo y le agregamos el estado alctual. Tambien usamos el spread operator para resetear el formulario.
+A la función de callback de *setRegisterData* la ponemos entre paréntesis porque lo que nos devuelve es un objeto. Con el spread operator lo que hacemos es iterar el estado previo y le agregamos el estado actual. También usamos el spread operator para resetear el formulario.
 
 ```javascript
   javascript

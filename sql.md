@@ -1,6 +1,8 @@
-# ****
+# **Consultas básicas**
 
-## **Peticiones básicas**
+---
+
+## **Consultas para creación y modificación de tablas**
 
 Crear tabla y definir campos **CREATE TABLE**
 
@@ -26,8 +28,6 @@ Insertar datos dentro de una tabla **INSERT INTO**
   VALUES ('Néstor Labiuk', 'nestor', 'pass01')
 
 ```
-
----
 
 Insertar varios datos en una tabla **INSERT INTO**
 
@@ -141,10 +141,89 @@ Actualizar datos de una tabla **UPDATE**
 
 ---
 
-Para obtener la cantidad de registros de una consulta se usa **COUNT** <span style="color: #f80">cardenales</span>
+Creación de una tabla con validación con **CHECK**
+
+```sql
+
+  CREATE TABLE roles ( 
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    level_security INT CHECK(level_security >= 0 AND level_security < 100) );
+
+```
+
+---
+---
+
+## **Consultas para obtención de datos**
+
+**SELECT** / **FROM** / **WHERE**
+
+Seleccionar todos los datos de una tabla. El '*' trae todos los datos.
+
+```sql
+
+  SELECT * FROM users 
+
+```
+
+Para especificar una columna se pone en el lugar del '*'
+
+```sql
+
+  SELECT country FROM users 
+
+```
+
+Para agregarle una condición se usa el **WHERE**. Trae los
+
+```sql
+
+  SELECT country, age FROM users WHERE age > 25
+
+```
+
+Combinación con operadores Lógicos **and** **or**
+
+```sql
+
+  select country, age FROM users WHERE age > 25 and age < 40 ORDER BY country
+
+```
+
+---
+
+Para obtener la cantidad de registros de una consulta se usa **COUNT**
 
 ```sql
 
   SELECT COUNT(*) FROM users WHERE country = 'Argentina'
+
+```
+
+Con el comando **COUNT** Se puede usar un alias para especificar de que datos es la cantidad que me trae
+
+```sql
+
+  SELECT COUNT(*) AS argentina_users FROM users WHERE country = 'Argentina'
+
+```
+
+Selección por grupo **GROUP BY**. Le pedimos que me traiga la cantidad de usuarios que tenemos por cada país.
+
+```sql
+
+  SELECT country, COUNT(*) AS users_count FROM users GROUP BY country;
+
+```
+
+ **GROUP BY** con **HAVING**. Le pedimos que me traiga la cantidad de usuarios que tenemos por cada país pero a partir de un valor.
+
+```sql
+
+  SELECT country, COUNT(*) AS users_count FROM users GROUP BY country
+    HAVING users_count > 1
+  ;
 
 ```
