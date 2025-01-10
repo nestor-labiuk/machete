@@ -1,4 +1,4 @@
-# Inicio de proyecto
+# Proyecto de CV
 
 ## proyecto web usando react y taildwind
 
